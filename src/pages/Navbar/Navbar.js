@@ -35,7 +35,7 @@ function Navbar() {
                     <div>
                     <div class="logo-details">
                     <i class="fa-solid fa-message-lines"></i>
-                        <span class="logo_name">LSC</span>
+                        <span class="logo_name">LSC Chat</span>
                         <i class="fa-solid fa-arrow-right-from-line bar"></i>
                     </div>
                     <ul class="nav-links">
