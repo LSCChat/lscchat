@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+:root {
+    --first-color: #43C59E;
+    --second-color: #095256;
+
+    --bg-color: #FDFFFF;
+    --shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;;
+}
+
+body{
+    background-color: var(--bg-color);
+}
+.main-content{
+    padding-left: 270px;
+}
+
+/* Input style */
+.input-continer{
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: var(--shadow);
+    border-radius: 5px;
+}
+.new-row{
+    display: flex;
+    flex-direction: row;
+    row-gap: 20px;
+    column-gap: 40px;
+}
+.input-field{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    width: 100%;
+}
+.input-field label{
+    font-size: 14px;
+    font-weight: 500;
+    color: #2e2e2e;
+}
+.input-field input, select, textarea{
+    outline: none;
+    font-size: 14px;
+    font-weight: 400;
+    color: #333;
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    padding: 7px 15px;
+    min-width: 200px;
+    margin: 8px 0;
+}
+.input-field input :focus,
+.input-field select:focus,
+.input-field textarea:focus{
+    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+}
+.input-field select,
+.input-field input[type="date"]{
+    color: #707070;
+}
+.input-field input[type="date"]:valid{
+    color: #333;
+}
+
+.input-field .btn-1{
+    border: 1px solid var(--first-color);
+    border-radius: 5px;
+    background-color: var(--first-color);
+    color: white;
+    padding: 7px 20px;
+    margin: 8px 0;
+    transition: .4s color, background;
+}
+.input-field .btn-1:hover{
+    color: var(--first-color);
+    background-color: white;
+}
+
+.action-td{
+    display: flex;
+    gap: 25px;
+}
+.edit-icon{
+    color: orange;
+}
+.delete-icon{
+    color: red;
+}
+
+.select-box-td{
+    text-align: center;
+}
+.select-box{
+    width: 1em;
+  height: 1rem;
+    accent-color: var(--first-color);
+}
+
+.display-none{
+    display: none;
+}
