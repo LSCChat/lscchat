@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { createContext, useContext } from 'react';
+import { useLocation } from 'react-router-dom';
 import Chat from './pages/Chat/Chat';
 import Navbar from './pages/Navbar/Navbar';
 import './Style.css';
@@ -14,13 +14,19 @@ import Login from './pages/Login/Login';
 import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
 
+const RenderNavbar = () => {
+  const location = useLocation();
+  if(location.pathname !== '/' && location.pathname !== '/index'){
+    return <Navbar />
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
       <div className='main'>
-        <Navbar />
+      <RenderNavbar />
         <div className='main-content'>
-
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="/index" element={<Login />} />

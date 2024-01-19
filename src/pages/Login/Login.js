@@ -73,12 +73,12 @@ const Login = () => {
           <div className='avatar'>
             {/* Replace with your avatar source */}
           </div>
-          <h1>Welcome</h1>
+          <h1 className="login-heading">Welcome Back</h1>
           <form onSubmit={(e) => onSubmit(e)}>
             <input type="email" name="email" placeholder='Username' value={email} onChange={(e) => onInputChange(e)} /><br /><br />
             <input type="password" name="password" placeholder='Password' value={password} onChange={(e) => onInputChange(e)} /><br /><br />
-            <div id='capcha' style={{ width: '205px', height: '45px' }}>
-              <span id='captcha-letter' style={{ letterSpacing: '6px' }}>{randomString}</span>
+            <div id='capcha' className="capcha">
+              <span id='captcha-letter' className="captcha-letter" style={{ letterSpacing: '6px' }}>{randomString}</span>
               <span id='refresh' onClick={handleRefreshCaptcha}>
                 <i className="fa-solid fa-rotate-right"></i>
               </span>

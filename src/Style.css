@@ -8,7 +8,7 @@
 }
 
 :root {
-    --first-color: #43C59E;
+    --first-color: #5d23ad;
     --second-color: #095256;
 
     --bg-color: #FDFFFF;
@@ -75,9 +75,10 @@ body{
 }
 
 .input-field .btn-1{
-    border: 1px solid var(--first-color);
+    width:150px;
+    border: 1px solid #5d23ad;
     border-radius: 5px;
-    background-color: var(--first-color);
+    background-color: #5d23ad;
     color: white;
     padding: 7px 20px;
     margin: 8px 0;

@@ -5,6 +5,14 @@
     background-repeat:no-repeat;
     /* background: center; */
     background-size:cover;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+    justify-content: center;
+    align-items: center;
 }
 .main-flex{
     margin-top:10px;
@@ -15,53 +23,67 @@
      gap:100px;
      flex-wrap:wrap;
      flex-direction: row-reverse;
-     align-content: flex-start;
+     align-content: center;
 
 }
-.main-login h1{
-   font-weight:700;
+
+.login-heading{
+    text-align: center;
+    font-weight:700;
    margin-bottom: 40px;
-   margin-left:20px;
-   
 }
 .main-login .avatar img{
     width: 180px;
     height:60px;
 }
 .main-login input{
+    width: 100%;
     padding:10px;
-    border-radius:10px;
+    border-radius:5px;
     border:1px solid #aa0f8c;
 }
-.main-flex #capcha{
+.main-flex .capcha{
     display:flex;
     align-items:center;
     justify-content: space-around;
-    border:1px solid #aa0f8c;
-    border-radius:10px;
+    /* border:1px solid #aa0f8c; */
+    border-radius:5px;
+    height: 45px;
+    gap: 30px;
 }
-.main-flex #capcha #refresh{
-    width:40px;
-    height:30px;
-    padding:5px;
-  background-color:#1dcd00;
-  color:white;
-  text-align:center;
-  /* border-radius:8px; */
+.main-flex .capcha #refresh{
+    width: 40px;
+    height: 35px;
+    padding: 5px;
+    background-color: var(--first-color);
+    color: white;
+    text-align: center;
+    border-radius: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.captcha-letter{
+    border: 1px solid #aa0f8c;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    justify-content: center;
 }
 .main-flex #capcha #capcha-letter{
     letter-spacing: 10px;
     
 }
 .main-login .button{
-    width:200px;
+    width: 100%;
     height:40px;
-    background-color:#67dc01   ;
-    background:linear-gradient(#84e500,#1dcd00);
+    background: var(--first-color);
     display:flex;
     align-items:center;
     justify-content:center;
-    border-radius:30px;
+    border-radius: 5px;
     color:white;
     border: none;
     /* box-shadow:2px 0px 8px #d683c5; */

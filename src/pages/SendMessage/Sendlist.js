@@ -32,37 +32,15 @@ function Sendlist() {
     };
     let jsonData = [
         {
-            "template_name": "Hello_world",
-            "date": "01-01-2024",
-            "status": "0",
-            "total": "40",
-            "send": "39",
-            "read": "30",
-            "reply": "20",
-            "not_send": "1",
-            "last_motified": "2024-01-01"
-        },
-        {
-            "template_name": "colte_poster",
-            "date": "01-01-2024",
-            "status": "1",
-            "total": "40",
-            "send": "39",
-            "read": "30",
-            "reply": "20",
-            "not_send": "1",
-            "last_motified": "2024-01-01"
-        },
-        {
-            "template_name": "edc",
-            "date": "01-01-2024",
-            "status": "0",
-            "total": "40",
-            "send": "39",
-            "read": "30",
-            "reply": "20",
-            "not_send": "1",
-            "last_motified": "2024-01-01"
+            "templateName": "apprenticeship",
+            "date": "2024-01-19T06:51:41.000+00:00",
+            "status": 0,
+            "total": "1",
+            "send": "1",
+            "delivered": "1",
+            "read": "1",
+            "reply": "1",
+            "notSend": "0"
         }
     ]
     function formatDate(dateString) {
@@ -91,8 +69,8 @@ function Sendlist() {
                 <details>
                     <summary key={index}>
                         <div>
-                            <span>{data.message}</span>
-                            <span>{formatDate(data.create_date)}</span>
+                            <span>{data.templateName}</span>
+                            <span>{formatDate(data.date)}</span>
                             <span className='status-span'><span className={(true) ? 'status status-success' : 'status status-failed'}><span className='dot'>&#183;</span> {(true) ? 'success' : 'failed'}</span></span>
                         </div>
                     </summary>
@@ -106,7 +84,7 @@ function Sendlist() {
                                                 <div className="d-flex align-items-center">
                                                     <div>
                                                         <p className="mb-0 text-secondary">Total</p>
-                                                        <h4 className="my-1 text-info">{0}</h4>
+                                                        <h4 className="my-1 text-info">{data.total}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-scooter text-white ms-auto">
                                                         <i class="fa-solid fa-address-card"></i>
@@ -122,25 +100,8 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
-                                                        <p className="mb-0 text-secondary">Delivered</p>
-                                                        <h4 className="my-1 text-info t-c-2">{0}</h4>
-                                                    </div>
-                                                    <div className="widgets-icons-2 rounded-circle bg-delivered text-white ms-auto">
-                                                    <i class="fa-solid fa-paper-plane-top"></i>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                </div>
-                                <div className="col">
-                                    <div className="card radius-10 border-start border-0 border-3 border-info">
-                                        <a href="./social_media_leads.php" className="no-underline">
-                                            <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
-                                                <div className="d-flex align-items-center">
-                                                    <div>
                                                         <p className="mb-0 text-secondary">Send</p>
-                                                        <h4 className="my-1 text-info t-c-2">{0}</h4>
+                                                        <h4 className="my-1 text-info t-c-2">{data.send}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
                                                     <i class="fa-solid fa-paper-plane-top"></i>
@@ -156,8 +117,26 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
+                                                        <p className="mb-0 text-secondary">Delivered</p>
+                                                        <h4 className="my-1 text-info t-c-2">{data.delivered}</h4>
+                                                    </div>
+                                                    <div className="widgets-icons-2 rounded-circle bg-delivered text-white ms-auto">
+                                                    <i class="fa-solid fa-paper-plane-top"></i>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                                
+                                <div className="col">
+                                    <div className="card radius-10 border-start border-0 border-3 border-info">
+                                        <a href="./social_media_leads.php" className="no-underline">
+                                            <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
+                                                <div className="d-flex align-items-center">
+                                                    <div>
                                                         <p className="mb-0 text-secondary">Read</p>
-                                                        <h4 className="my-1 text-info t-c-3">{0}</h4>
+                                                        <h4 className="my-1 text-info t-c-3">{data.read}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle  bg-gradient-blooker text-white ms-auto">
                                                     <i class="fa-solid fa-badge-check"></i>
@@ -174,7 +153,7 @@ function Sendlist() {
                                                 <div className="d-flex align-items-center">
                                                     <div>
                                                         <p className="mb-0 text-secondary">Reply</p>
-                                                        <h4 className="my-1 text-info t-c-4">{0}</h4>
+                                                        <h4 className="my-1 text-info t-c-4">{data.reply}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-pink text-white ms-auto">
                                                     <i class="fa-solid fa-reply-all"></i>
@@ -191,7 +170,7 @@ function Sendlist() {
                                                 <div className="d-flex align-items-center">
                                                     <div>
                                                         <p className="mb-0 text-secondary">Not Send</p>
-                                                        <h4 className="my-1 text-info t-c-5">{0}</h4>
+                                                        <h4 className="my-1 text-info t-c-5">{data.notSend}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
                                                     <i class="fa-solid fa-circle-exclamation"></i>

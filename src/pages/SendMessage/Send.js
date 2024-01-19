@@ -343,7 +343,7 @@ function Send() {
                             <option value={'apprenticeship'}>apprenticeship</option>
                         </select>
                     </div>
-                    <div className='input-field'>
+                    <div className='input-field btn-in'>
                         <button className='btn-1' onClick={handleSendData}>Send <i class="fa-solid fa-paper-plane-top"></i></button>
                     </div>
                 </div>
