@@ -66,7 +66,6 @@ const Login = () => {
       console.error('Error:');
     }
   }
-  
   return (
     <div className='main-login'>
       <div className='main-flex'>
