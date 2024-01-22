@@ -66,13 +66,13 @@ function Navbar() {
                             <div class="iocn-link">
                                 <Link to="#">
                                 <i class="fa-solid fa-address-book"></i>
-                                    <span class="link_name">Contacts</span>
+                                    <span class="link_name">campaign</span>
                                 </Link>
                                 <i class='bx bxs-chevron-down arrow' ></i>
                             </div>
                             <ul class="sub-menu">
                                 <li><Link class="link_name" to="#">Contacts</Link></li>
-                                <li><Link to="addcontacts"><span class="fa-solid fa-user-plus"></span> Add Contacts</Link></li>
+                                <li><Link to="addcontacts"><span class="fa-solid fa-user-plus"></span> Create Campaign</Link></li>
                                 <li><Link to="contacts"><span class="fa-solid fa-address-card"></span> Contacts</Link></li>
                             </ul>
                         </li>

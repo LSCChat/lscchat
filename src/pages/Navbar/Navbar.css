@@ -42,6 +42,8 @@ nav {
         width: 100%;
         display: flex;
         align-items: center;
+        box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset;
+
     }
 
     .sidebar .logo-details i {
@@ -127,7 +129,7 @@ nav {
     }
     .sidebar .nav-links li a:hover{
         /* box-shadow: rgba(0, 0, 0, 0.25) 0px 0.0625em 0.0625em, rgba(0, 0, 0, 0.25) 0px 0.125em 0.5em, rgba(255, 255, 255, 0.1) 0px 0px 0px 1px inset; */
-
+    color:black;
     }
     .sidebar .nav-links li a .link_name {
         font-size: 16px;
@@ -188,7 +190,7 @@ nav {
     .sidebar .nav-links li .sub-menu .link_name {
         display: none;
     }
-
+    
     .sidebar.close .nav-links li .sub-menu .link_name {
         font-size: 18px;
         opacity: 1;

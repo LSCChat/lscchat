@@ -12,6 +12,7 @@ import Test from './pages/Test/Test';
 import Login from './pages/Login/Login';
 import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
+import Compaign from './pages/Contacts/compaign';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -27,7 +28,7 @@ root.render(
           <Route path="send" element={<Send />} />
           <Route path="contacts" element={<Contacts />} />
           <Route path="sendlist" element={<Sendlist />} />
-          <Route path="addcontacts" element={<Addcontacts />} />
+          <Route path="addcontacts" element={<Addcontacts/>} />
           <Route path="test" element={<Test />} />
           <Route path="testing" element={<Testing />} />
           <Route path="logout" element={<Logout />} />
