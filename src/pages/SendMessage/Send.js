@@ -161,7 +161,49 @@ function Send() {
                         ]
                     }
                 }
-            } else {
+            } else if(template == 'apprenticeship_organization'){
+                messageData = {
+                    "messaging_product": "whatsapp",
+
+                    "to": data.mobile_no,
+                    "type": "template",
+                    "template": {
+                        "name": "apprenticeship_organization",
+                        "language": {
+                            "code": "en_US"
+                        },
+                        "components": [
+                            {
+                                "type": "header",
+                                "parameters": [
+                                    {
+                                        "type": "image",
+                                        "image": {
+                                            "link": "https://lsc-india.org/Whatsapp%20API/images/Apprenticeship poster-02-02-02.png"
+                                        }
+                                    }
+                                ]
+                            },
+
+                            {
+                                "type": "button",
+                                "sub_type": "url",
+                                "index": 1,
+                                "parameters": [
+                                    {
+                                        "type": "text",
+                                        "text": "Visit Website"
+                                    }
+
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }
+            
+            
+            else {
                 messageData = {
                     messaging_product: "whatsapp",
                     to: data.mobile_no, // Replace with the recipient's phone number in international format
@@ -341,6 +383,7 @@ function Send() {
                             <option value={'hello_world'}>hello_world</option>
                             <option value={'colte_text3'}>colte_text3</option>
                             <option value={'apprenticeship'}>apprenticeship</option>
+                            <option value={'apprenticeship_organization'}>apprenticeship_organization</option>
                         </select>
                     </div>
                     <div className='input-field btn-in'>
