@@ -3,10 +3,12 @@ import { useState } from 'react';
 import './Send.css';
 import WhatsappPreview from '../WhatsappPreview/WhatsappPreview';
 import Success from '../Alert/Success';
-
+import { useContext } from 'react';
+import TokenContext from '../..';
 function Send() {
+    const token = useContext(TokenContext);
     const headers = {
-        Authorization: 'Bearer EAAEwXBNVMRoBO8RBWBBb2hWvUAkZAIhwsljqPVvAAcYmH76ZAQZBatrE2xBwii0sALTZBXyh84uAQs4ZACTN04j8IdK5fWFAK3wrOZCDkZCZCy0ZAXzPPQNGYofdbQOK4ZAVBFJkpgmfVjOe2OhZBX9Ijvx3md01rqaRqnszWYFDb1ixuxm8GLBHM121G87nFgfrrWR', // Replace with your access token
+        Authorization: token, // Replace with your access token
         'Content-Type': 'application/json'
     };
     console.log("component is rendering");
