@@ -1,43 +1,71 @@
-import './compaign.css';
+import React, { useState } from 'react';
+import './compaign.css'; // Import your CSS file
 
+const Campaign = () => {
+  const [progress, setProgress] = useState(0);
 
-const accentColor = '#FF6F00';
-
-  const listItemStyle = {
-    color: accentColor,
+  const handleStepClick = (step) => {
+    setProgress(step);
   };
 
+  const renderContent = () => {
+    switch (progress) {
+      case 0:
+        return (
+          <div id="first">
+            <h2>Plan & Research</h2>
+            <p>Lorem Ipsum...</p>
+          </div>
+        );
+      case 34:
+        return (
+          <div id="second">
+            <h2>Design</h2>
+            <p>Lorem Ipsum...</p>
+          </div>
+        );
+      case 67:
+        return (
+          <div id="third">
+            <h2>Development</h2>
+            <p>Lorem Ipsum...</p>
+          </div>
+        );
+      case 100:
+        return (
+          <div id="fourth">
+            <h2>Launch</h2>
+            <p>Lorem Ipsum...</p>
+          </div>
+        );
+      default:
+        return null;
+    }
+  };
 
-function Compaign(){
-   
-    return(
-    <div>
-        <h1>OL-Cards</h1>
-<ol>
-  <li >
-    
-    <div className="icon" style={{fontSize:"40px"}}><i className="fa-light fa-lightbulb-exclamation-on"></i></div>
-    <div className="title">Create Campaign</div>
-    {/* <div className="descr">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</div> */}
-  </li>
-  <li style={{accentColor:" #008DC2"}}>
-    <div className="icon" style={{fontSize:"40px"}}><i className="fa-regular fa-address-book"></i></div>
-    <div className="title">Add Compaign</div>
-    {/* <div className="descr">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</div> */}
-  </li>
-  <li style={{accentColor: "#0B456A"}}>
-    <div className="icon" style={{fontSize:"40px"}}><i className="fa-light fa-chart-line-up"></i></div>
-    <div className="title">Growth</div>
-    {/* <div className="descr">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</div> */}
-  </li>
-  {/* <li style={{accentColor: "#6A829A"}}>
-    <div className="icon"><i className="fa-light fa-chart-mixed"></i></div>
-    <div className="title">Benifits</div>
-    <div className="descr">Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit.</div>
-  </li> */}
-</ol>
+  return (
+    <div className="row">
+      <div className="cont">
+        <progress id="nprogress-bar" value={progress} max="100"></progress>
+        <div id="step">
+          <span className={`first ${progress >= 0 ? 'border-change' : ''}`} onClick={() => handleStepClick(0)}>
+            <i className="fa fa-flask"></i>
+          </span>
+          <span className={`second ${progress >= 34 ? 'border-change' : ''}`} onClick={() => handleStepClick(34)}>
+            <i className="fa fa-paint-brush"></i>
+          </span>
+          <span className={`third ${progress >= 67 ? 'border-change' : ''}`} onClick={() => handleStepClick(67)}>
+            <i className="fa fa-code"></i>
+          </span>
+          <span className={`fourth ${progress === 100 ? 'border-change' : ''}`} onClick={() => handleStepClick(100)}>
+            <i className="fa fa-rocket"></i>
+          </span>
+        </div>
 
-</div>
-    )
-}
-export default Compaign;
+        {renderContent()}
+      </div>
+    </div>
+  );
+};
+
+export default Campaign;

@@ -78,7 +78,7 @@ function Contacts() {
                     <div className="card-2">
                         <div className='details-header'>
                             <div className='details-header-name'>
-                                <p>contact List</p>
+                                {/* <p>contact List</p> */}
                                 <p>Contacts Details</p>
                             </div>
                             <div className='details-header-btn'>

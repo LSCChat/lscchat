@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { useLocation } from 'react-router-dom';
 import Chat from './pages/Chat/Chat';
 import Navbar from './pages/Navbar/Navbar';
 import './Style.css';
@@ -14,27 +15,34 @@ import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
 import Compaign from './pages/Contacts/compaign';
 
+const RenderNavbar = () => {
+  const location = useLocation();
+  if(location.pathname !== '/' && location.pathname !== '/index'){
+    return <Navbar />
+  }
+}
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <BrowserRouter>
-  <div className='main'>
-    <Navbar />
-      <div className='main-content'>
 
-      
-      <Routes>
-          <Route path="/" element={<Login />} />
-          <Route path="/index" element={<Login />} />
-          <Route path="send" element={<Send />} />
-          <Route path="contacts" element={<Contacts />} />
-          <Route path="sendlist" element={<Sendlist />} />
-          <Route path="addcontacts" element={<Addcontacts/>} />
-          <Route path="test" element={<Test />} />
-          <Route path="testing" element={<Testing />} />
-          <Route path="logout" element={<Logout />} />
-      </Routes>
+      <div className='main'>
+      <RenderNavbar />
+        <div className='main-content'>
+          <Routes>
+            <Route path="/" element={<Login />} />
+            <Route path="/index" element={<Login />} />
+            <Route path="send" element={<Send />} />
+            <Route path="contacts" element={<Contacts />} />
+            <Route path="sendlist" element={<Sendlist />} />
+            <Route path="addcontacts" element={<Compaign />} />
+            <Route path="test" element={<Test />} />
+            <Route path="testing" element={<Testing />} />
+            <Route path="logout" element={<Logout />} />
+          </Routes>
+        </div>
+
       </div>
-    </div>
-    </BrowserRouter>
+  </BrowserRouter>
 );
 

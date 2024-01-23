@@ -213,7 +213,7 @@ function Addcontacts() {
                                 </div> */}
                 <div className='new-row'>
                   <div className='input-field'>
-                    <button className='btn-1'>Submit</button>
+                    <button className='btn-1 m-auto mt-4'>Submit</button>
                   </div>
                 </div>
               </form>
