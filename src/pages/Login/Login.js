@@ -56,9 +56,9 @@ const Login = () => {
       const data = await response.json();
       // Handle the response data here
       console.log('Response from server:', data);
-      if(data.email != null){
+      if (data.email != null) {
         navigate("/send")
-      }else{
+      } else {
         alert("Invalid credentials");
       }
     } catch (error) {
@@ -69,30 +69,50 @@ const Login = () => {
   return (
     <div className='main-login'>
       <div className='main-flex'>
-        <div style={{ width: '300px' }}>
-          <div className='avatar'>
-            {/* Replace with your avatar source */}
+        <div className='login-container'>
+          <div style={{ width: '300px' }}>
+            <div className='avatar'>
+              {/* Replace with your avatar source */}
+            </div>
+            <h1 className="login-heading">Welcome Back</h1>
+            <form onSubmit={(e) => onSubmit(e)}>
+              <input type="email" name="email" placeholder='Username' value={email} onChange={(e) => onInputChange(e)} /><br /><br />
+              <input type="password" name="password" placeholder='Password' value={password} onChange={(e) => onInputChange(e)} /><br /><br />
+              <div id='capcha' className="capcha">
+                <span id='captcha-letter' className="captcha-letter" style={{ letterSpacing: '6px' }}>{randomString}</span>
+                <span id='refresh' onClick={handleRefreshCaptcha}>
+                  <i className="fa-solid fa-rotate-right"></i>
+                </span>
+              </div><br />
+              <input placeholder='Enter Captcha'></input><br /><br />
+              <button className='button'>
+                <span>Login</span>
+              </button>
+            </form>
           </div>
-          <h1 className="login-heading">Welcome Back</h1>
-          <form onSubmit={(e) => onSubmit(e)}>
-            <input type="email" name="email" placeholder='Username' value={email} onChange={(e) => onInputChange(e)} /><br /><br />
-            <input type="password" name="password" placeholder='Password' value={password} onChange={(e) => onInputChange(e)} /><br /><br />
-            <div id='capcha' className="capcha">
-              <span id='captcha-letter' className="captcha-letter" style={{ letterSpacing: '6px' }}>{randomString}</span>
-              <span id='refresh' onClick={handleRefreshCaptcha}>
-                <i className="fa-solid fa-rotate-right"></i>
-              </span>
-            </div><br />
-            <input placeholder='Enter Captcha'></input><br /><br />
-            <button className='button'>
-              <span>login</span>
-            </button>
-          </form>
-        </div>
-        <div className='image' style={{ width: '500px' }}>
-          <img src={man}></img>{/* Replace with your gif source */}
+          <div className='image' style={{ width: '400px' }}>
+            {/* <img src={man}></img>Replace with your gif source */} 
+
+<dotlottie-player src="https://lottie.host/8cdb3906-6895-4bf4-b4f8-21e6a4eab54f/B2gOPWedUx.json" background="transparent" speed="1" style={{width: "400px", height: "400px"}} loop autoplay></dotlottie-player>
+
+
+          </div>
         </div>
       </div>
+      <div className="area" >
+        <ul className="circles">
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+          <li></li>
+        </ul>
+      </div >
     </div>
   );
 };
