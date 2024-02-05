@@ -58,7 +58,7 @@ const biker=async(mobile,certificate)=>{
         console.log('Message sent(responseData):', responseData);
         // console.log('Message_id :' + responseData.messages[0].id);
 
-        let messageContent = ""
+    let messageContent = ""
         if (type == 1) {
             messageContent=text;
         } else {

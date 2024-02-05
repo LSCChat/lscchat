@@ -16,7 +16,7 @@ import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
 
 // import Compaign from './pages/Campaign/compaign';
-import Wizard from './pages/Campaign_2/Campaign';
+import CreateCampaign from './pages/Campaign_2/Campaign';
 
 import Compaign from './pages/Contacts/compaign';
 import Approved from './pages/Approval Requests/Approved';
@@ -56,7 +56,7 @@ const RenderRoute = () => {
                 <Route path="logout" element={<Logout />} />
                 <Route path="approved" element={<Approved />} />
                 <Route path="pending" element={<Pending />} />
-                <Route path="addcontacts" element={<Wizard />} />
+                <Route path="createcampaign" element={<CreateCampaign />} />
               </Routes>
             </div>
           </div>
