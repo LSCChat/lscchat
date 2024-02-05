@@ -44,7 +44,7 @@ const Campaign = () => {
   };
 
   return (
-    <div className="row">
+    <div className="row main-campaign">
       <div className="cont">
         <progress id="nprogress-bar" value={progress} max="100"></progress>
         <div id="step">

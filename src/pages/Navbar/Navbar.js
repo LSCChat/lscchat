@@ -1,11 +1,23 @@
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
+import { UserContext } from '../..';
+import { getSessionValue } from '../API/SessionAPI';
+
 function Navbar() {
+    const {userDetails, setUserDetails} = useContext(UserContext);
+
+    if(Object.keys(userDetails).length === 0){
+        const call = async() => {
+            setUserDetails(await getSessionValue());  
+        }
+        call();
+    }
     useEffect(() => {
         const handleArrowClick = (e) => {
           const arrowParent = e.currentTarget.parentElement.parentElement; // Selecting main parent of arrow
           arrowParent.classList.toggle('showMenu');
+          console.log("calling fun")
         };
     
         const handleSidebarToggle = () => {
@@ -16,6 +28,7 @@ function Navbar() {
         const arrows = document.querySelectorAll('.arrow');
         arrows.forEach((arrow) => {
           arrow.addEventListener('click', handleArrowClick);
+          console.log("im from")
         });
     
         const sidebarBtn = document.querySelector('.bar');
@@ -27,8 +40,7 @@ function Navbar() {
           });
           sidebarBtn.removeEventListener('click', handleSidebarToggle);
         };
-      }, []);
-
+      }, [userDetails]);   
     return (
         <nav>
                 <div class="sidebar">
@@ -79,6 +91,20 @@ function Navbar() {
                         <li>
                             <div class="iocn-link">
                                 <Link to="#">
+                                <i class="fa-solid fa-address-book"></i>
+                                    <span class="link_name">Contacts</span>
+                                </Link>
+                                <i class='bx bxs-chevron-down arrow' ></i>
+                            </div>
+                            <ul class="sub-menu">
+                                <li><Link class="link_name" to="#">Contacts</Link></li>
+                                <li><Link to="addcontacts"><span class="fa-solid fa-user-plus"></span> Create Contacts</Link></li>
+                                <li><Link to="contacts"><span class="fa-solid fa-address-card"></span> Contacts</Link></li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="iocn-link">
+                                <Link to="#">
                                 <i class="fa-solid fa-message-dots"></i>
                                     <span class="link_name">Send Message</span>
                                 </Link>
@@ -90,6 +116,22 @@ function Navbar() {
                                 <li><Link to="sendlist"><span class="fa-solid fa-list"></span>Send List</Link></li>
                             </ul>
                         </li>
+                        {userDetails.userRole === 1 && (
+                        <li>
+                            <div class="iocn-link">
+                                <Link to="#">
+                                <i class="fa-sharp fa-solid fa-badge-check"></i>
+                                    <span class="link_name">Approval Requests</span>
+                                </Link>
+                                <i class='bx bxs-chevron-down arrow' ></i>
+                            </div>
+                            <ul class="sub-menu">
+                                <li><Link class="link_name" to="#">Approval Requests</Link></li>
+                                <li><Link to="pending"><span class="fa-solid fa-octagon-exclamation"></span> Pending</Link></li>
+                                <li><Link to="approved"><span class="fa-solid fa-thumbs-up"></span>Approved</Link></li>
+                            </ul>
+                        </li>
+                        )}
                         <li>
                             <Link to="#">
                                 <i class="fa-solid fa-comment-dots"></i>

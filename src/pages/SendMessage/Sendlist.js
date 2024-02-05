@@ -65,7 +65,7 @@ function Sendlist() {
                         <button className='payroll-btn-1'><i class="fa-regular fa-arrow-right-from-bracket" style={{ transform: 'rotate(270deg)' }}></i> Export</button>
                     </div>
                 </div>
-                {jsonData.map((data, index) => (
+                {list.map((data, index) => (
                 <details>
                     <summary key={index}>
                         <div>
@@ -100,7 +100,7 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
-                                                        <p className="mb-0 text-secondary">Send</p>
+                                                        <p className="mb-0 text-secondary">Sent</p>
                                                         <h4 className="my-1 text-info t-c-2">{data.send}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
@@ -169,7 +169,7 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
-                                                        <p className="mb-0 text-secondary">Not Send</p>
+                                                        <p className="mb-0 text-secondary">Not Sent</p>
                                                         <h4 className="my-1 text-info t-c-5">{data.notSend}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">

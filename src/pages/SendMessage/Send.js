@@ -4,14 +4,14 @@ import './Send.css';
 import WhatsappPreview from '../WhatsappPreview/WhatsappPreview';
 import Success from '../Alert/Success';
 import { useContext } from 'react';
-import TokenContext from '../..';
+import { TokenContext } from '../..';
 function Send() {
     const token = useContext(TokenContext);
     const headers = {
         Authorization: token, // Replace with your access token
         'Content-Type': 'application/json'
     };
-    console.log("component is rendering");
+
     let listID = 0;
     const [selectedRows, setSelectedRows] = useState([]);
     const [type, setType] = useState();

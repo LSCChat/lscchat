@@ -1,4 +1,5 @@
 /* .text-center{text-align:center; color:#CCC;} */
+.main-campaign{
 .cont{
   height: 100%; 
   left: calc(50% - 350px);
@@ -55,3 +56,5 @@
   background: #049dfe; 
   transition: all 0.4s ease-in-out;
 } 
+
+}

@@ -61,6 +61,7 @@
     padding: 7px;
     border-radius: 5px;
     border: 2px solid var(--second-color);
+    font-weight: normal;
 }
 
 .main-flex .capcha {
@@ -94,6 +95,7 @@
     align-items: center;
     border-radius: 5px;
     justify-content: center;
+    font-weight: normal;
 }
 
 .main-flex #capcha #capcha-letter {

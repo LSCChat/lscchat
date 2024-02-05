@@ -4,9 +4,11 @@ import "./Login.css"
 import man from "../../asset/Comp 1_1.gif"
 
 // import wave from "../../asset/wave.png"
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from "../..";
 
 const Login = () => {
+  const {useDetails, setUserDetails} = useContext(UserContext);
   const [randomString, setRandomString] = useState(generateRandomAlphabetic(8));
 
   function generateRandomAlphabetic(length) {
@@ -57,6 +59,7 @@ const Login = () => {
       // Handle the response data here
       console.log('Response from server:', data);
       if (data.email != null) {
+        setUserDetails({userRole: data.userRole});
         navigate("/send")
       } else {
         alert("Invalid credentials");
