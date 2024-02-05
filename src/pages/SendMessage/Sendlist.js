@@ -40,7 +40,8 @@ function Sendlist() {
             "delivered": "1",
             "read": "1",
             "reply": "1",
-            "notSend": "0"
+            "notSend": "0",
+            "failed":"1"
         }
     ]
     function formatDate(dateString) {
@@ -65,7 +66,7 @@ function Sendlist() {
                         <button className='payroll-btn-1'><i class="fa-regular fa-arrow-right-from-bracket" style={{ transform: 'rotate(270deg)' }}></i> Export</button>
                     </div>
                 </div>
-                {jsonData.map((data, index) => (
+                {list.map((data, index) => (
                 <details>
                     <summary key={index}>
                         <div>

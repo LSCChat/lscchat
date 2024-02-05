@@ -14,7 +14,8 @@ import Test from './pages/Test/Test';
 import Login from './pages/Login/Login';
 import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
-import Compaign from './pages/Contacts/compaign';
+// import Compaign from './pages/Campaign/compaign';
+import Wizard from './pages/Campaign_2/Campaign';
 
 const RenderNavbar = () => {
   const location = useLocation();
@@ -38,10 +39,11 @@ const RenderRoute = () => {
               <Route path="send" element={<Send />} />
               <Route path="contacts" element={<Contacts />} />
               <Route path="sendlist" element={<Sendlist />} />
-              <Route path="addcontacts" element={<Addcontacts />} />
+              <Route path="addcontacts" element={<Wizard />} />
               <Route path="test" element={<Test />} />
               <Route path="testing" element={<Testing />} />
               <Route path="logout" element={<Logout />} />
+              {/* <Route path="l2" element={<Wizard />} /> */}
             </Routes>
           </div>
         </div>
