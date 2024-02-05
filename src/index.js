@@ -14,8 +14,14 @@ import Test from './pages/Test/Test';
 import Login from './pages/Login/Login';
 import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
+
 // import Compaign from './pages/Campaign/compaign';
 import Wizard from './pages/Campaign_2/Campaign';
+
+import Compaign from './pages/Contacts/compaign';
+import Approved from './pages/Approval Requests/Approved';
+import Pending from './pages/Approval Requests/Pending';
+
 
 const RenderNavbar = () => {
   const location = useLocation();
@@ -23,30 +29,38 @@ const RenderNavbar = () => {
     return <Navbar />
   }
 }
-const TokenContext = createContext();
-export default TokenContext;
+
+export const TokenContext = createContext();
+export const UserContext = createContext();
+
 const RenderRoute = () => {
   const [token, setToken] = useState("Bearer EAAEwXBNVMRoBO8RBWBBb2hWvUAkZAIhwsljqPVvAAcYmH76ZAQZBatrE2xBwii0sALTZBXyh84uAQs4ZACTN04j8IdK5fWFAK3wrOZCDkZCZCy0ZAXzPPQNGYofdbQOK4ZAVBFJkpgmfVjOe2OhZBX9Ijvx3md01rqaRqnszWYFDb1ixuxm8GLBHM121G87nFgfrrWR");
+  const [userDetails, setUserDetails] = useState({});
   return (
-    <BrowserRouter>
-      <TokenContext.Provider value={token}>
-        <div className='main'>
-          <RenderNavbar />
-          <div className='main-content'>
-            <Routes>
-              <Route path="/" element={<Login />} />
-              <Route path="/index" element={<Login />} />
-              <Route path="send" element={<Send />} />
-              <Route path="contacts" element={<Contacts />} />
-              <Route path="sendlist" element={<Sendlist />} />
-              <Route path="addcontacts" element={<Wizard />} />
-              <Route path="test" element={<Test />} />
-              <Route path="testing" element={<Testing />} />
-              <Route path="logout" element={<Logout />} />
-              {/* <Route path="l2" element={<Wizard />} /> */}
-            </Routes>
+
+      <BrowserRouter>
+        <TokenContext.Provider value={token}>
+          <UserContext.Provider value={{userDetails, setUserDetails}}>
+            <div className='main'>
+            <RenderNavbar />
+            <div className='main-content'>
+              <Routes>
+                <Route path="/" element={<Login />} />
+                <Route path="/index" element={<Login />} />
+                <Route path="send" element={<Send />} />
+                <Route path="contacts" element={<Contacts />} />
+                <Route path="sendlist" element={<Sendlist />} />
+                <Route path="addcontacts" element={<Addcontacts />} />
+                <Route path="test" element={<Test />} />
+                <Route path="testing" element={<Testing />} />
+                <Route path="logout" element={<Logout />} />
+                <Route path="approved" element={<Approved />} />
+                <Route path="pending" element={<Pending />} />
+                <Route path="addcontacts" element={<Wizard />} />
+              </Routes>
+            </div>
           </div>
-        </div>
+        </UserContext.Provider>
       </TokenContext.Provider>
     </BrowserRouter>
   )

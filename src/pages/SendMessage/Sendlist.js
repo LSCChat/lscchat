@@ -101,7 +101,7 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
-                                                        <p className="mb-0 text-secondary">Send</p>
+                                                        <p className="mb-0 text-secondary">Sent</p>
                                                         <h4 className="my-1 text-info t-c-2">{data.send}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-ohhappiness text-white ms-auto">
@@ -170,7 +170,7 @@ function Sendlist() {
                                             <div className="card-body" style={{ padding: '1.25rem', border: 'none', margin: '0' }}>
                                                 <div className="d-flex align-items-center">
                                                     <div>
-                                                        <p className="mb-0 text-secondary">Not Send</p>
+                                                        <p className="mb-0 text-secondary">Not Sent</p>
                                                         <h4 className="my-1 text-info t-c-5">{data.notSend}</h4>
                                                     </div>
                                                     <div className="widgets-icons-2 rounded-circle bg-gradient-bloody text-white ms-auto">
