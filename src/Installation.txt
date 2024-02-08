@@ -1,0 +1,4 @@
+
+boostrap install command
+// npm install react-bootstrap bootstrap
+----------------------------------------------------------------------------

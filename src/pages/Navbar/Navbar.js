@@ -84,7 +84,7 @@ function Navbar() {
                             </div>
                             <ul class="sub-menu">
                                 <li><Link class="link_name" to="#">Contacts</Link></li>
-                                <li><Link to="createcampaign"><span class="fa-solid fa-user-plus"></span> Create Campaign</Link></li>
+                                <li><Link to="CreateCampaign"><span class="fa-solid fa-user-plus"></span> Create Campaign</Link></li>
                                 <li><Link to="contacts"><span class="fa-solid fa-address-card"></span> Contacts</Link></li>
                             </ul>
                         </li>
