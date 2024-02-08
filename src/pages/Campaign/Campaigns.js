@@ -1,10 +1,10 @@
 import React from 'react'
-import './Pending.css'
+import './Campaigns.css'
 import { useState, useEffect } from 'react';
 import formatDate from '../../Functions/date';
 import formatTime from '../../Functions/time';
 
-function Pending() {
+function Campaigns() {
     const [contact, setContact] = useState([]);
     //Fetching data onload
     useEffect(() => {
@@ -109,4 +109,4 @@ function Pending() {
     )
 }
 
-export default Pending
+export default Campaigns

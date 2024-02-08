@@ -325,4 +325,8 @@
     flex: 2;
     align-self: flex-start;
   }
+
+  .bottom-line {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  }
 }
