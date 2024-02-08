@@ -16,11 +16,13 @@ import Testing from './pages/Testing/Testing';
 import Logout from './pages/Logout/Logout';
 
 // import Compaign from './pages/Campaign/compaign';
-import CreateCampaign from './pages/Campaign_2/Campaign';
+import CreateCampaign from './pages/Campaign/Campaign';
 
 import Compaign from './pages/Contacts/compaign';
 import Approved from './pages/Approval Requests/Approved';
 import Pending from './pages/Approval Requests/Pending';
+import Campaigns from './pages/Campaign/Campaigns';
+
 
 
 const RenderNavbar = () => {
@@ -57,6 +59,7 @@ const RenderRoute = () => {
                 <Route path="approved" element={<Approved />} />
                 <Route path="pending" element={<Pending />} />
                 <Route path="createcampaign" element={<CreateCampaign />} />
+                <Route path="campaigns" element={<Campaigns />} />
               </Routes>
             </div>
           </div>

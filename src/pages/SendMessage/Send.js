@@ -255,8 +255,8 @@ function Send() {
                         message_id: responseData.messages[0].id,
                         message_type: type,
                         message: messageContent,
-                        receive_id: "919626974940",
-                        send_id: responseData.contacts[0].wa_id,
+                        receive_id: responseData.contacts[0].wa_id,
+                        send_id: "917845810780",
                         send_list_id: listID
                     }),
                     credentials: 'include',

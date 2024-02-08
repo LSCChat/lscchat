@@ -85,7 +85,7 @@ function Navbar() {
                             <ul class="sub-menu">
                                 <li><Link class="link_name" to="#">Contacts</Link></li>
                                 <li><Link to="createcampaign"><span class="fa-solid fa-user-plus"></span> Create Campaign</Link></li>
-                                <li><Link to="contacts"><span class="fa-solid fa-address-card"></span> Contacts</Link></li>
+                                <li><Link to="campaigns"><span class="fa-solid fa-magnifying-glass-chart"></span> Campaigns</Link></li>
                             </ul>
                         </li>
                         <li>
@@ -116,7 +116,7 @@ function Navbar() {
                                 <li><Link to="sendlist"><span class="fa-solid fa-list"></span>Send List</Link></li>
                             </ul>
                         </li>
-                        {userDetails.userRole === 1 && (
+                        {(userDetails.userRole === 1 || userDetails.userRole === 2 || userDetails.userRole === 3) && (
                         <li>
                             <div class="iocn-link">
                                 <Link to="#">

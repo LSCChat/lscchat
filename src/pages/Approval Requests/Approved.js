@@ -100,7 +100,7 @@ function Approved() {
                                 </thead>
                                 <tbody>
                                     {contact.map((data, index) => (
-                                        <tr key={index}>
+                                        <tr key={index} className='bottom-line'>
                                             <td>{index+1}</td>
                                             <td className='profile'>
                                                 <div className="profile-img-div"><span className="profile-img" style={{ backgroundColor: colors[Math.floor(Math.random() * colors.length)] }}><span>{data.fullname.charAt(0).toUpperCase()}</span></span></div>
