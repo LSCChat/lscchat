@@ -1,0 +1,16 @@
+@import url(../../Style.css);
+
+.main-chat{
+    display: flex;
+    flex-direction: row;
+    margin: 15px;
+    height: calc(100vh - 30px);
+    overflow: hidden;
+    .contact-div {
+        flex: 1;
+    }
+
+    .chat-div {
+        flex: 3;
+    }
+}

@@ -1,0 +1,30 @@
+@import url(../../Style.css);
+
+.main-chatcontact {
+    .chatcontact-card{
+        list-style: none;
+        padding: 0;
+        overflow-y: scroll;
+        height: calc(100vh - 30px);
+    }
+    .chatcontact-card li {
+        display: flex;
+        flex-direction: row;
+        gap: 20px;
+        cursor: pointer;
+        border-radius: 5px;
+        padding: 10px;
+        box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
+    }
+    .chatcontact-card li p {
+        margin: 0;
+    }
+    .chatcontact-avatar div{
+        width: 60px;
+        height: 60px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+    }
+}

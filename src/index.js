@@ -60,6 +60,7 @@ const RenderRoute = () => {
                 <Route path="pending" element={<Pending />} />
                 <Route path="createcampaign" element={<CreateCampaign />} />
                 <Route path="campaigns" element={<Campaigns />} />
+                <Route path="chat" element={<Chat />} />
               </Routes>
             </div>
           </div>

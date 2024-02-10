@@ -1,34 +1,56 @@
-const messageData = {
-    messaging_product: "whatsapp",
-    to: "919626974940", // Replace with the recipient's phone number in international format
-    type: "text",
-    text: {
-      body: "Hello, gokul im from React app......."
+import React, { useEffect, useState } from 'react'
+import Chatcontact from './Chatcontact'
+import './Chat.css'
+import Chatpage from './Chatpage';
+
+function Chat() {
+  const [chatNumber, setChatNumber] = useState({
+    mobileNo: ""
+  });
+  const {mobileNo} = chatNumber;
+  const [chats, setChats] = useState([]);
+
+  useEffect(() => {
+    fetchChat();
+  }, [chatNumber, setChatNumber])
+
+  setTimeout(function() {
+    fetchChat();
+  }, 5000); 
+
+  const fetchChat = async () => {
+    try {
+      const response = await fetch("http://localhost:8080/lscchat/v1.0/chat", {
+        method: 'POST',
+        credentials: 'include', // Ensure cookies are sent for session management
+        headers: {
+          'Content-Type': 'application/json', // Specify content type for clarity
+        },
+        body: JSON.stringify({ mobileNo }),
+        credentials: 'include',
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error ${response.status}: ${response.statusText}`); // Provide specific error details
+      }
+
+      const result = await response.json();
+      console.log(result);
+      setChats(result)
+    } catch (error) {
+      console.error('Error fetching contact details:', error);
     }
   };
-// const messageData = {
-//   messaging_product: "whatsapp",
-//   to: "919626974940", // Replace with the recipient's phone number in international format
-//   type: "template",
-//   template: {
-//     name: "colte_text3",
-//     language: {
-//       code: "en_US"
-//     }
-//   }
-// };
-  
-  // const headers = {
-  //   Authorization: 'Bearer EAAEwXBNVMRoBO11oRZAcZBiZBajpeniVggSA3OPbPZClyL2NwRVl1n9BudFOEqNfwZAVJmdhQ8xrAFMZAbfkx4Rb3qgKFaFWslKfBsMSJiImUAnQVo4alSITLOYPb2aWNUS55VJSruaCFHvxZAdwgwaYb0ZB3TCUmxAtIuyoZCks006n0PM47v7padtZAkP1NIXLN6sDXPy5R4Wz0P0GUfs7kZD', // Replace with your access token
-  //   'Content-Type': 'application/json'
-  // };
-  
-  // fetch('https://graph.facebook.com/v17.0/201819313012948/messages?', {
-  //   method: 'POST',
-  //   headers: headers,
-  //   body: JSON.stringify(messageData)
-  // })
-  // .then(response => response.json())
-  // .then(data => console.log('Message sent:', data))
-  // .catch(error => console.error('Error sending message:', error));
-  
+  return (
+    <div className='main-chat'>
+        <div className='contact-div'>
+            <Chatcontact setChatNumber={setChatNumber}/>
+        </div>
+        <div className='chat-div'>
+            <Chatpage chats={chats} chatNumber={chatNumber} fetchChat={fetchChat}/>
+        </div>
+    </div>
+  )
+}
+
+export default Chat
