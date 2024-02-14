@@ -6,10 +6,14 @@ import man from "../../asset/Comp 1_1.gif"
 // import wave from "../../asset/wave.png"
 import React, { useContext, useState } from 'react';
 import { UserContext } from "../..";
+import { PrefixUrlContext } from "../..";
+import Captcha from '../Captcha/Captcha';
 
 const Login = () => {
+  const backendURL = useContext(PrefixUrlContext);
   const {useDetails, setUserDetails} = useContext(UserContext);
   const [randomString, setRandomString] = useState(generateRandomAlphabetic(8));
+  const[reload, setReload] = useState(true);
 
   function generateRandomAlphabetic(length) {
     const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
@@ -24,8 +28,10 @@ const Login = () => {
   }
 
   const handleRefreshCaptcha = () => {
-    const newRandomString = generateRandomAlphabetic(8);
-    setRandomString(newRandomString);
+    setReload(!reload);
+    console.log(reload);
+    // const newRandomString = generateRandomAlphabetic(8);
+    // setRandomString(newRandomString);
   };
 
   // Login process
@@ -42,7 +48,7 @@ const Login = () => {
     e.preventDefault();
 
     try {
-      const response = await fetch('http://localhost:8080/lscchat/v1.0/login', {
+      const response = await fetch(backendURL+'/lscchat/v1.0/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -82,7 +88,7 @@ const Login = () => {
               <input type="email" name="email" placeholder='Username' value={email} onChange={(e) => onInputChange(e)} /><br /><br />
               <input type="password" name="password" placeholder='Password' value={password} onChange={(e) => onInputChange(e)} /><br /><br />
               <div id='capcha' className="capcha">
-                <span id='captcha-letter' className="captcha-letter" style={{ letterSpacing: '6px' }}>{randomString}</span>
+                <span id='captcha-letter' className="captcha-letter" style={{ letterSpacing: '6px' }}><Captcha reload={reload}/></span>
                 <span id='refresh' onClick={handleRefreshCaptcha}>
                   <i className="fa-solid fa-rotate-right"></i>
                 </span>

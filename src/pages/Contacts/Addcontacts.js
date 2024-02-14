@@ -4,13 +4,11 @@ import './Addcontacts.css';
 // import excel from '../../asset/Capture.PNG';
 import Swal from 'sweetalert2';
 import 'sweetalert2/dist/sweetalert2.css';
-
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 
 function Addcontacts() {
-  
-
-
-  
+  const backendURL = useContext(PrefixUrlContext);
   const [mcontact, setMcontact] = useState({
     fullname: "",
     mobile_no: "",
@@ -25,7 +23,7 @@ function Addcontacts() {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://localhost:8080/lscchat/v1.0/addcontactmanual', {
+      const response = await fetch(backendURL+'/lscchat/v1.0/addcontactmanual', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -127,7 +125,7 @@ function Addcontacts() {
     formData.append('file', file);
   
     try {
-      const response = await fetch('http://localhost:8080/lscchat/v1.0/addcontactExcel', {
+      const response = await fetch(backendURL+'/lscchat/v1.0/addcontactExcel', {
         method: 'POST',
         body: formData,
         credentials: 'include',

@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import './Chatcontact.css'
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 
 function Chatcontact({setChatNumber}) {
-
+  const backendURL = useContext(PrefixUrlContext);
   const [contact, setContact] = useState([]);
 
   //Fetching data onload
@@ -12,7 +14,7 @@ function Chatcontact({setChatNumber}) {
 
   const fetchContactDetails = async () => {
     try {
-      const response = await fetch("http://localhost:8080/lscchat/v1.0/chatcontact", {
+      const response = await fetch(backendURL+'/lscchat/v1.0/chatcontact', {
         method: 'POST',
         credentials: 'include', // Ensure cookies are sent for session management
         headers: {

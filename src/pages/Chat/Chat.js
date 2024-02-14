@@ -2,8 +2,10 @@ import React, { useEffect, useState } from 'react'
 import Chatcontact from './Chatcontact'
 import './Chat.css'
 import Chatpage from './Chatpage';
-
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 function Chat() {
+  const backendURL = useContext(PrefixUrlContext);
   const [chatNumber, setChatNumber] = useState({
     mobileNo: ""
   });
@@ -20,7 +22,7 @@ function Chat() {
 
   const fetchChat = async () => {
     try {
-      const response = await fetch("http://localhost:8080/lscchat/v1.0/chat", {
+      const response = await fetch(backendURL+'/lscchat/v1.0/chat', {
         method: 'POST',
         credentials: 'include', // Ensure cookies are sent for session management
         headers: {

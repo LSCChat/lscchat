@@ -1,9 +1,12 @@
 import React from 'react'
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 
 function Test() {
+  const backendURL = useContext(PrefixUrlContext);
   const call = async() => {
     try {
-      const response = await fetch('http://localhost:8080/lscchat/v1.0/addsendlist', {
+      const response = await fetch(backendURL+'/lscchat/v1.0/addsendlist', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

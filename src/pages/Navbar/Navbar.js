@@ -2,18 +2,42 @@ import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Navbar.css'
 import { UserContext } from '../..';
-import { getSessionValue } from '../API/SessionAPI';
+import { PrefixUrlContext } from "../..";
+// import { getSessionValue } from '../API/SessionAPI';
 
 function Navbar() {
+    const backendURL = useContext(PrefixUrlContext);
     const { userDetails, setUserDetails } = useContext(UserContext);
 
     if (Object.keys(userDetails).length === 0) {
         const call = async () => {
+            const getSessionValue = async() => {
+                try{
+                    const response = await fetch(backendURL+'/lscchat/v1.0/sessionvalues', {
+                        method: 'POST',
+                        credentials: 'include',
+                        headers: {
+                            'Content-type': 'application/json'
+                        }
+                    });
+            
+                    if(!response.ok){
+                        throw new Error(`HTTP ${response.status}: ${response.statusText}`)
+                    }
+                    const result = await response.json();
+                    console.log(result);
+                    return {userRole: result.userRole}
+                } catch(error) {
+                    console.error('Error fetching contact details: '+ error)
+                }
+            }
             setUserDetails(await getSessionValue());
         }
         call();
     }
+    
     useEffect(() => {
+        
         const handleArrowClick = (e) => {
             const arrowParent = e.currentTarget.parentElement.parentElement; // Selecting main parent of arrow
             arrowParent.classList.toggle('showMenu');

@@ -5,7 +5,9 @@ import WhatsappPreview from '../WhatsappPreview/WhatsappPreview';
 import Success from '../Alert/Success';
 import { useContext } from 'react';
 import { TokenContext } from '../..';
+import { PrefixUrlContext } from '../..';
 function Send() {
+    const backendURL = useContext(PrefixUrlContext);
     const token = useContext(TokenContext);
     const headers = {
         Authorization: token, // Replace with your access token
@@ -26,7 +28,7 @@ function Send() {
 
     const fetchContactDetails = async () => {
         try {
-            const response = await fetch("http://localhost:8080/lscchat/v1.0/contactdetails", {
+            const response = await fetch(backendURL+'/lscchat/v1.0/contactdetails', {
                 method: 'GET',
                 credentials: 'include', // Ensure cookies are sent for session management
                 headers: {
@@ -246,7 +248,7 @@ function Send() {
             }
             //API for message sended
             try {
-                const response = await fetch('http://localhost:8080/lscchat/v1.0/message', {
+                const response = await fetch(backendURL+'/lscchat/v1.0/message', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
@@ -298,7 +300,7 @@ function Send() {
             }
         }
         try {
-            const response = await fetch('http://localhost:8080/lscchat/v1.0/addsendlist', {
+            const response = await fetch(backendURL+'/lscchat/v1.0/addsendlist', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

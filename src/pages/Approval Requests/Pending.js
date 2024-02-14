@@ -3,8 +3,10 @@ import './Pending.css'
 import { useState, useEffect } from 'react';
 import formatDate from '../../Functions/date';
 import formatTime from '../../Functions/time';
-
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 function Pending() {
+    const backendURL = useContext(PrefixUrlContext);
     const [contact, setContact] = useState([]);
     //Fetching data onload
     useEffect(() => {
@@ -13,7 +15,7 @@ function Pending() {
 
     const fetchContactDetails = async () => {
         try {
-            const response = await fetch("http://localhost:8080/lscchat/v1.0/getpendinglist", {
+            const response = await fetch(backendURL+'/lscchat/v1.0/getpendinglist', {
                 method: 'GET',
                 credentials: 'include', // Ensure cookies are sent for session management
                 headers: {

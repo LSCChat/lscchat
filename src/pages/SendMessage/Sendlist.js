@@ -1,7 +1,11 @@
 import React from 'react'
 import './Sendlist.css'
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
+
 function Sendlist() {
+    const backendURL = useContext(PrefixUrlContext);
     const [list, setList] = useState([]);
     //Fetching data onload
     useEffect(() => {
@@ -10,7 +14,7 @@ function Sendlist() {
 
     const fetchContactDetails = async () => {
         try {
-            const response = await fetch("http://localhost:8080/lscchat/v1.0/getsendlist", {
+            const response = await fetch(backendURL+'/lscchat/v1.0/getsendlist', {
                 method: 'GET',
                 credentials: 'include', // Ensure cookies are sent for session management
                 headers: {

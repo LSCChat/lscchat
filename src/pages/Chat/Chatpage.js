@@ -2,8 +2,10 @@ import React from 'react'
 import { useContext } from 'react';
 import { TokenContext } from '../..';
 import './Chatpage.css';
+import { PrefixUrlContext } from "../..";
 
 function Chatpage({chats, chatNumber, fetchChat}) {
+    const backendURL = useContext(PrefixUrlContext);
     const getRandomColor = () => {
         return '#' + Math.floor(Math.random() * 16777215).toString(16);
       }
@@ -66,7 +68,7 @@ function Chatpage({chats, chatNumber, fetchChat}) {
     
                 //API for message sended
                 try {
-                    const response = await fetch('http://localhost:8080/lscchat/v1.0/message', {
+                    const response = await fetch(backendURL+'/lscchat/v1.0/message', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',

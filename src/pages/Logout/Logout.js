@@ -1,7 +1,11 @@
 import React from 'react'
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
+
 function Logout() {
+    const backendURL = useContext(PrefixUrlContext);
     let navigate = useNavigate();
     //Fetching data onload
     useEffect(() => {
@@ -10,7 +14,7 @@ function Logout() {
 
     const callLogout = async () => {
     try {
-        const response = await fetch("http://localhost:8080/lscchat/v1.0/logout", {
+        const response = await fetch(backendURL+'/lscchat/v1.0/logout', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json', // Specify content type for clarity

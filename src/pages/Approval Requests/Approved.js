@@ -1,7 +1,10 @@
 import React from 'react'
 import './Approved.css'
 import { useState, useEffect } from 'react';
+import { useContext } from 'react';
+import { PrefixUrlContext } from "../..";
 function Approved() {
+    const backendURL = useContext(PrefixUrlContext);
     const [contact, setContact] = useState([]);
     //Fetching data onload
     useEffect(() => {
@@ -10,7 +13,7 @@ function Approved() {
 
     const fetchContactDetails = async () => {
     try {
-        const response = await fetch("http://localhost:8080/lscchat/v1.0/contactdetails", {
+        const response = await fetch(backendURL+'/lscchat/v1.0/contactdetails', {
         method: 'GET',
         credentials: 'include', // Ensure cookies are sent for session management
         headers: {
