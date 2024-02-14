@@ -64,6 +64,23 @@ function Chatcontact({setChatNumber}) {
   const chatNumber = (number) => {
     setChatNumber({mobileNo: number});
   }
+
+  const renderDate = (date) => {
+    const messageDate = new Date(date);
+    const today = new Date();
+
+    if (
+      messageDate.getDate() === today.getDate() &&
+      messageDate.getMonth() === today.getMonth() &&
+      messageDate.getFullYear() === today.getFullYear()
+    ) {
+      // Message date is today, return time only
+      return new Date(date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
+    } else {
+      // Message date is not today, return full date
+      return new Date(date).toLocaleDateString('en-US');
+    }
+  };
   return (
     <div className='main-chatcontact'>
       <ul className='chatcontact-card'>
@@ -76,8 +93,8 @@ function Chatcontact({setChatNumber}) {
             </div>
             <div className='chatcontact-right'>
               <div>
-                <p>{data[0]}</p>
-                <p>{data[1]}</p>
+              <p>{data[0]}</p>
+                <p style={{ fontSize: '12px', color: 'gray' }}>{renderDate(data[1])}</p>
               </div>
             </div>
           </li>

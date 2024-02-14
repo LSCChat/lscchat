@@ -1,19 +1,58 @@
 @import url(../../Style.css);
 
 .main-chatcontact {
-    .chatcontact-card{
-        list-style: none;
-        padding: 0;
-        overflow-y: scroll;
-        height: calc(100vh - 30px);
-    }
+    /* Hide the default scrollbar */
+.chatcontact-card::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Style the container with a custom scrollbar */
+  .chatcontact-card {
+    /* margin-left:-40px; */
+    overflow-y: auto; /* Enable vertical scrolling */
+    height: calc(100vh - 30px); /* Set the height of the container */
+    position: relative; /* Required for pseudo-elements */
+    padding:10px;
+  }
+  
+  /* Style the scrollbar track */
+  .chatcontact-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 2px;
+    bottom: 0;
+    width: 4px; /* Width of the scrollbar */
+    background-color: #f0f0f0; /* Color of the track */
+    border-radius: 2px; /* Border radius of the track */
+  }
+  
+  /* Style the scrollbar thumb */
+  .chatcontact-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 2px;
+    width: 4px; /* Width of the scrollbar */
+    background-color: #ccc; /* Color of the thumb */
+    border-radius: 2px; /* Border radius of the thumb */
+  }
+  
+  /* Show the scrollbar thumb only on hover */
+  .chatcontact-card:hover::after {
+    background-color: #aaa; /* Color of the thumb on hover */
+  }
+  
     .chatcontact-card li {
         display: flex;
         flex-direction: row;
-        gap: 20px;
+        align-items:center;
+        gap: 10px;
         cursor: pointer;
-        border-radius: 5px;
+        border-radius: 12px;
         padding: 10px;
+        margin:10px;
+        background-color: #e35cf63d;
         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     }
     .chatcontact-card li p {
@@ -27,4 +66,6 @@
         justify-content: center;
         border-radius: 50%;
     }
+
+
 }

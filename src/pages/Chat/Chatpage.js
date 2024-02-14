@@ -100,6 +100,17 @@ function Chatpage({chats, chatNumber, fetchChat}) {
             }
         }
       }
+
+      // time format
+    const getHoursAndMinutes = (dateTimeString) => {
+        const date = new Date(dateTimeString);
+        const hours = date.getHours();
+        const minutes = date.getMinutes();
+        const ampm = hours >= 12 ? 'PM' : 'AM';
+        const formattedHours = hours % 12 || 12; // Convert hours to 12-hour format
+
+        return `${formattedHours}:${minutes < 10 ? '0' + minutes : minutes} ${ampm}`;
+    };
   return (
     <div className='main-chatpage'>
         {chatNumber.mobileNo &&
@@ -113,8 +124,7 @@ function Chatpage({chats, chatNumber, fetchChat}) {
             <div className='chats'>
                 {chats.map((data, index) => (
                     <div key={index} className={data.type == 1 ? 'right':'left'}>
-                        <div>{data.message}</div>
-                        <div className='data-time'>{data.dateTime}</div>
+                        <div className="data-msg">{data.message}<span className='data-time'>{getHoursAndMinutes(data.dateTime)}</span></div>
                     </div>
                 ))}
             </div>

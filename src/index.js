@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { createContext } from 'react';
-import Chat from './pages/Chat/Chat';
-// import Chat from './pages/Chat WebSocket/Chat'
+// import Chat from './pages/Chat/Chat';
+import Chat from './pages/Chat WebSocket/Chat'
 import Navbar from './pages/Navbar/Navbar';
 import './Style.css';
 import Send from './pages/SendMessage/Send';
@@ -65,8 +65,8 @@ const RenderRoute = () => {
                   <Route path="pending" element={<Pending />} />
                   <Route path="createcampaign" element={<CreateCampaign />} />
                   <Route path="campaigns" element={<Campaigns />} />
-                  <Route path="chat" element={<Chat />} />
-                  {/* <Route path="webchat" element={<Chat />} /> */}
+                  {/* <Route path="chat" element={<Chat />} /> */}
+                  <Route path="webchat" element={<Chat />} />
                 </Routes>
               </div>
             </div>
