@@ -3,14 +3,18 @@
 .main-chat{
     display: flex;
     flex-direction: row;
-    margin: 15px;
-    height: calc(100vh - 30px);
+    margin: 10px;
+    height: calc(100vh - 20px);
     overflow: hidden;
+    border: 2px solid #e35cf63d;
+    border-radius: 10px;
+    box-shadow: 0 0 87px #e35cf63d;
     .contact-div {
         flex: 1;
     }
 
     .chat-div {
         flex: 3;
+        position: relative;
     }
 }

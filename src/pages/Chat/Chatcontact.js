@@ -1,70 +1,141 @@
-import React, { useState, useEffect } from 'react'
-import './Chatcontact.css'
-import { useContext } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
+import './Chatcontact.css';
+import SockJS from 'sockjs-client';
+import { over } from 'stompjs';
 import { PrefixUrlContext } from "../..";
 
-function Chatcontact({setChatNumber}) {
+function Chatcontact({ setChatNumber }) {
   const backendURL = useContext(PrefixUrlContext);
   const [contact, setContact] = useState([]);
+  const [userDetails, setUserDetails] = useState(null);
+  const [stompClient, setStompClient] = useState(null);
 
-  //Fetching data onload
   useEffect(() => {
-    fetchContactDetails();
-  }, []);
+    const fetchData = async () => {
+      try {
+        const response = await fetch(backendURL + '/lscchat/v1.0/chatcontact', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
 
-  const fetchContactDetails = async () => {
+        if (!response.ok) {
+          throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(result);
+        setContact(result);
+      } catch (error) {
+        console.error('Error fetching contact details:', error);
+      }
+    };
+
+    fetchData();
+  }, [backendURL]);
+
+  useEffect(() => {
+    const call = async () => {
+      try {
+        const response = await fetch(backendURL + '/lscchat/v1.0/sessionvalues', {
+          method: 'POST',
+          credentials: 'include',
+          headers: {
+            'Content-type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}: ${response.statusText}`);
+        }
+
+        const result = await response.json();
+        console.log(result);
+        setUserDetails({
+          userRole: result.userRole,
+          companyId: result.company_id,
+          depId: result.dep_id,
+          unitId: result.unit_id
+        });
+      } catch (error) {
+        console.error('Error fetching contact details:', error);
+      }
+    };
+
+    call();
+  }, [backendURL]);
+
+  useEffect(() => {
+    if (userDetails && stompClient === null) {
+      const socket = new SockJS(backendURL + "/ws");
+      const stomp = over(socket);
+
+      stomp.connect({}, (frame) => {
+        console.log("Connected to the server", frame);
+        setStompClient(stomp);
+        
+        // Set the companyId dynamically in the subscription path
+        const subscriptionPath = `/user/${userDetails.companyId+""+userDetails.depId+""+userDetails.unitId}/private`;
+        stomp.subscribe(subscriptionPath, onPrivateMessage);
+      }, (error) => {
+        console.error("WebSocket error:", error);
+      });
+    }
+
+    return () => {
+      if (stompClient) {
+        stompClient.disconnect();
+        setStompClient(null);
+      }
+    };
+  }, [userDetails, backendURL, stompClient]);
+
+  const onPrivateMessage = (payload) => {
+    const payloadData = JSON.parse(payload.body);
+    console.log("Received Message:", payloadData);
+    setContact(payloadData);
+  };
+
+  const chatNumber = (number, name) => {
+    setChatNumber({ mobileNo: number, name: name });
+    updateContact(number, {notRead: "0", lastMessage: ""})
+    //Update in database
+    updateReadAll(number);
+  };
+  const updateReadAll = async (number) => {
     try {
-      const response = await fetch(backendURL+'/lscchat/v1.0/chatcontact', {
-        method: 'POST',
-        credentials: 'include', // Ensure cookies are sent for session management
-        headers: {
-          'Content-Type': 'application/json', // Specify content type for clarity
-        },
+      const response = await fetch(backendURL + '/lscchat/v1.0/readedall/'+number, {
+        method: 'PUT',
         credentials: 'include',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ readed: 1 })
       });
 
       if (!response.ok) {
-        throw new Error(`HTTP error ${response.status}: ${response.statusText}`); // Provide specific error details
+        throw new Error(`HTTP error ${response.status}: ${response.statusText}`);
       }
 
       const result = await response.json();
       console.log(result);
-      setContact(result)
+      setContact(result);
     } catch (error) {
       console.error('Error fetching contact details:', error);
     }
-  };
-
-  const getRandomColor = () => {
-    return '#' + Math.floor(Math.random() * 16777215).toString(16);
   }
-
-  const getContrastColor = (hexColor) => {
-    const threshold = 130;
-    const rgb = parseInt(hexColor.slice(1), 16);
-    const brightness = ((rgb >> 16) * 299 + (rgb >> 8 & 255) * 587 + (rgb & 255) * 114) / 1000;
-
-    return brightness > threshold ? '#000' : '#fff';
+  const updateContact = (number, updatedValues) => {
+    setContact(precContact => (
+      precContact.map(contact => {
+        if(contact.mobileNumber === number) {
+          return {...contact, ...updatedValues}
+        }
+        return contact;
+      })
+    ));
   }
-
-  const renderUserAvatar = () => {
-      const initials = <i class="fa-duotone fa-user"></i>; //getInitials(profileName)
-      const backgroundColor = getRandomColor();
-      const textColor = getContrastColor(backgroundColor);
-
-      return (
-        <div
-          style={{ backgroundColor, color: textColor }}
-        >
-          {initials}
-        </div>
-      );
-  }
-
-  const chatNumber = (number) => {
-    setChatNumber({mobileNo: number});
-  }
-
   const renderDate = (date) => {
     const messageDate = new Date(date);
     const today = new Date();
@@ -74,34 +145,41 @@ function Chatcontact({setChatNumber}) {
       messageDate.getMonth() === today.getMonth() &&
       messageDate.getFullYear() === today.getFullYear()
     ) {
-      // Message date is today, return time only
       return new Date(date).toLocaleTimeString('en-US', { hour: 'numeric', minute: 'numeric', hour12: true });
     } else {
-      // Message date is not today, return full date
       return new Date(date).toLocaleDateString('en-US');
     }
   };
+
   return (
     <div className='main-chatcontact'>
       <ul className='chatcontact-card'>
         {contact.map((data, index) => (
-          <li key={index} onClick={()=>chatNumber(data[0])}>
+          <li key={index} onClick={() => chatNumber(data.mobileNumber, data.name)}>
             <div className='chatcontact-left'>
               <div className='chatcontact-avatar'>
-              {renderUserAvatar()}
+                <div style={{ backgroundColor: "ghostwhite", color: "var(--first-color)" }}>
+                  <i className="fa-duotone fa-user"></i>
+                </div>
               </div>
             </div>
             <div className='chatcontact-right'>
               <div>
-              <p>{data[0]}</p>
-                <p style={{ fontSize: '12px', color: 'gray' }}>{renderDate(data[1])}</p>
+                <div className='line-1'>
+                  <div className='contact-name'>{data.name == ""? data.mobileNumber : data.name}</div>
+                  <div className='contact-count'><span className={data.notRead == 0 ? "" : "count-design"}>{data.notRead == 0 ? "" : data.notRead}</span></div>
+                </div>
+                <div className='line-2'>
+                  <div className='last-message'>{data.lastMessage == 0 ? "Tap to view Message" : data.lastMessage}</div>
+                  <div className='contact-date-time' ><span className={data.notRead == 0 ? "" : "date-time-color"}>{renderDate(data.lastDateTime)}</span></div>
+                </div> 
               </div>
             </div>
           </li>
         ))}
       </ul>
     </div>
-  )
+  );
 }
 
-export default Chatcontact
+export default Chatcontact;

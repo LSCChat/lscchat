@@ -21,6 +21,7 @@ function Send() {
     const [success, setSuccess] = useState(false);
     const [isMasterCheckboxChecked, setIsMasterCheckboxChecked] = useState(false);
     const [contact, setContact] = useState([]);
+    const [messageCount, setMessageCount] = useState(0);
     //Fetching data onload
     useEffect(() => {
         fetchContactDetails();
@@ -204,6 +205,58 @@ function Send() {
                         ]
                     }
                 }
+            }else if(template == 'testing_name'){
+                messageData = {
+                    "messaging_product": "whatsapp",
+
+                    "to": data.mobile_no,
+                    "type": "template",
+                    "template": {
+                        "name": "testing_name",
+                        "language": {
+                            "code": "en"
+                        },
+                        "components": [
+                            {
+                                "type": "header",
+                                "parameters": [
+                                    {
+                                        "type": "image",
+                                        "image": {
+                                            "link": "https://lsc-india.org/Whatsapp%20API/images/Apprenticeship poster-02-02-02.png"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
+            }else if(template == "linde_biker_awareness") {
+                messageData = {
+                    "messaging_product": "whatsapp",
+
+                    "to": data.mobile_no,
+                    "type": "template",
+                    "template": {
+                        "name": "linde_biker_awareness",
+                        "language": {
+                            "code": "en"
+                        },
+                        "components": [
+                            {
+                                "type": "header",
+                                "parameters": [
+                                    {
+                                        "type": "image",
+                                        "image": {
+                                            "link": "https://lsc-india.org/Whatsapp%20API/images/whatsapp linde Updated.png"
+                                        }
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                }
             }
             
             
@@ -317,14 +370,38 @@ function Send() {
             listID = data.id;
 
             //Calling the message sending API
+            // const sendMessagePromises = value.map((value) => {
+            //     setTimeout(()=>{
+            //         console.log("Message Count ---:> "+messageCount++);
+            //         sendMessage(value)
+            //     }, 5000);
+                
+            // });
 
-            const sendMessagePromises = value.map((value) => {
-                sendMessage(value)
+            // async function sendMessagePromises(values) {
+            //     for (let i = 0; i < values.length; i++) {
+            //         await new Promise(resolve => setTimeout(resolve, 5000)); // Wait for 5000 milliseconds
+            //         setMessageCount(messageCount++);
+            //         console.log("Message Count ---:> " + messageCount);
+            //         sendMessage(values[i]);
+            //     }
+            // }
+
+            const sendMessagePromises = value.map((value, index) => {
+                return new Promise(resolve => {
+                    setTimeout(() => {
+                        setMessageCount(prevCount => prevCount + 1);
+                        setSuccess(true);
+                        // console.log("Message Count ---:> " + messageCount);
+                        resolve(sendMessage(value));
+                    }, 1000 * index);
+                });
             });
+            
+            // sendMessagesWithDelay(value);
 
             try {
                 await Promise.all(sendMessagePromises);
-                setSuccess(true);
                 // console.log(sendMessagePromises);
             } catch (error) {
                 console.error('Error sending messages:', error);
@@ -388,6 +465,8 @@ function Send() {
                             <option value={'colte_text3'}>colte_text3</option>
                             <option value={'apprenticeship'}>apprenticeship</option>
                             <option value={'apprenticeship_organization'}>apprenticeship_organization</option>
+                            <option value={'testing_name'}>testing_name</option>
+                            <option value={'linde_biker_awareness'}>linde_biker_awareness</option>
                         </select>
                     </div>
                     <div className='input-field btn-in'>
@@ -452,7 +531,7 @@ function Send() {
                 </div>
             </div>
             {/* <button onClick={printMsg}>Print</button> */}
-            {success && <Success title={"Successfully sent"} description={"Messages sent"} button2={"Go to sent list"} button2URL={"/sendlist"} />}
+            {success && <Success messageCount={messageCount} title={"Successfully sent"} description={"Messages sent"} button2={"Go to sent list"} button2URL={"/sendlist"} />}
         </div>
     )
 }

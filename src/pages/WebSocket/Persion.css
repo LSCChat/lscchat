@@ -1,0 +1,50 @@
+@import url(../../Style.css);
+
+.persion {
+    height: 100Vh;
+    width: 100%;
+    position: relative;
+    .display-chat{
+
+    }
+    .sent-btn{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        z-index: 0;
+        width: 100%;
+        padding: 20px;
+        display: flex;
+        flex-direction: row;
+        gap: 10px;
+        justify-content: center ;
+        box-shadow: 2px 2px 2px 2px black;
+    }
+    .sent-btn input {
+        padding: 10px 15px;
+        border-radius: 10px;
+        width: 500px;
+    }
+    .sent-btn button {
+        padding: 10px 15px;
+        border-radius: 10px;
+    }
+    .right{
+        text-align: right;
+    }
+    .left{
+        text-align: left;
+    }
+    .display-chat{
+        padding: 20px 10vh;
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+    }
+    .chat span{
+        padding: 10px;
+        box-shadow: 2px 2px 2px 2px black;
+        border-radius: 10px;
+        display: inline-block;
+    }
+}

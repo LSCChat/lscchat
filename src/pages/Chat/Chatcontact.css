@@ -42,17 +42,18 @@
   .chatcontact-card:hover::after {
     background-color: #aaa; /* Color of the thumb on hover */
   }
-  
     .chatcontact-card li {
         display: flex;
         flex-direction: row;
         align-items:center;
+        width: 300px;
         gap: 10px;
         cursor: pointer;
         border-radius: 12px;
         padding: 10px;
         margin:10px;
         background-color: #e35cf63d;
+        background-image: linear-gradient(to left, #dfc8ff, #e35cf63d); 
         box-shadow: rgba(0, 0, 0, 0.02) 0px 1px 3px 0px, rgba(27, 31, 35, 0.15) 0px 0px 0px 1px;
     }
     .chatcontact-card li p {
@@ -67,5 +68,56 @@
         border-radius: 50%;
     }
 
-
+    .line-1{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 210px;
+      gap: 5px;
+    }
+    .contact-name {
+        width: 175px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+    .contact-count {
+        width: 30px;
+    }
+    .count-design {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background-color: var(--first-color);
+      color: white;
+      text-align: center;
+      font-size: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center ;
+    }
+    .line-2{
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 210px;
+      gap: 5px;
+    }
+    .last-message {
+      width: 150px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      color: gray;
+      font-size: 12px;
+    }
+    .contact-date-time {
+      width: 60px;
+      color: gray;
+      font-size: 12px;
+      text-align: end;
+    }
+    .date-time-color {
+      color: var(--first-color);
+    }
 }

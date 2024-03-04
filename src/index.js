@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { useLocation } from 'react-router-dom';
 import { createContext } from 'react';
-// import Chat from './pages/Chat/Chat';
-import Chat from './pages/Chat WebSocket/Chat'
+import Chat from './pages/Chat/Chat';
+// import Chat from './pages/Chat WebSocket/Chat'
 import Navbar from './pages/Navbar/Navbar';
 import './Style.css';
 import Send from './pages/SendMessage/Send';
@@ -23,7 +23,9 @@ import Compaign from './pages/Contacts/compaign';
 import Approved from './pages/Approval Requests/Approved';
 import Pending from './pages/Approval Requests/Pending';
 import Campaigns from './pages/Campaign/Campaigns';
-
+import Persion1 from './pages/WebSocket/Persion1';
+import Persion2 from './pages/WebSocket/Persion2';
+import Dashboard from './pages/Dashboard/Dashboard';
 
 
 const RenderNavbar = () => {
@@ -42,6 +44,7 @@ const RenderRoute = () => {
   const [userDetails, setUserDetails] = useState({});
   // const [prefixUrl, setPrefixUrl] = useState("https://backend.lsc-crm.in");
   const [prefixUrl, setPrefixUrl] = useState("http://localhost:8081");
+  // const [prefixUrl, setPrefixUrl] = useState("https://f8bf-14-194-28-158.ngrok-free.app");
   return (
 
     <BrowserRouter>
@@ -65,8 +68,11 @@ const RenderRoute = () => {
                   <Route path="pending" element={<Pending />} />
                   <Route path="createcampaign" element={<CreateCampaign />} />
                   <Route path="campaigns" element={<Campaigns />} />
-                  {/* <Route path="chat" element={<Chat />} /> */}
-                  <Route path="webchat" element={<Chat />} />
+                  <Route path="chat" element={<Chat />} />
+                  {/* <Route path="webchat" element={<Chat />} /> */}
+                  <Route path="persion1" element={<Persion1 />} />
+                  <Route path="persion2" element={<Persion2 />} />
+                  <Route path="dashboard" element={<Dashboard />} />
                 </Routes>
               </div>
             </div>

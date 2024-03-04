@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react';
 import './Success.css'
 import { Link } from 'react-router-dom';
-const Success = ({title = 'Success', description = '', button2 = 'View', button2URL = ''}) => {
+const Success = ({messageCount=0, title = 'Success', description = '', button2 = 'View', button2URL = ''}) => {
     useEffect(() => {
         const showBtn = document.querySelector(".show-modal");
         const closeBtn = document.querySelector(".close-btn");
@@ -30,7 +30,8 @@ const Success = ({title = 'Success', description = '', button2 = 'View', button2
             <section className='active'>
                 <span class="overlay"></span>
                 <div class="modal-box">
-                    <i class="fa-regular fa-circle-check"></i>
+                    {/* <i class="fa-regular fa-circle-check"></i> */}
+                    <span className='message-count'>{messageCount}</span>
                     <h2>{title}</h2>
                     <h3>{description}</h3>
                     <div class="buttons">

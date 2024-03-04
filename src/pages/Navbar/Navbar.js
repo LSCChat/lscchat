@@ -26,7 +26,12 @@ function Navbar() {
                     }
                     const result = await response.json();
                     console.log(result);
-                    return {userRole: result.userRole}
+                    return {
+                        userRole: result.userRole,
+                        companyId: result.company_id,
+                        depId: result.dep_id,
+                        unitId: result.unit_id
+                    }
                 } catch(error) {
                     console.error('Error fetching contact details: '+ error)
                 }
@@ -37,7 +42,7 @@ function Navbar() {
     }
     
     useEffect(() => {
-        
+        console.log(userDetails);
         const handleArrowClick = (e) => {
             const arrowParent = e.currentTarget.parentElement.parentElement; // Selecting main parent of arrow
             arrowParent.classList.toggle('showMenu');
@@ -52,7 +57,6 @@ function Navbar() {
         const arrows = document.querySelectorAll('.arrow');
         arrows.forEach((arrow) => {
             arrow.addEventListener('click', handleArrowClick);
-            console.log("im from")
         });
 
         const sidebarBtn = document.querySelector('.bar');
@@ -75,12 +79,12 @@ function Navbar() {
                 </div>
                 <ul class="nav-links">
                     <li>
-                        <Link to="#">
+                        <Link to="dashboard">
                             <i class='bx bx-grid-alt' ></i>
                             <span class="link_name">Dashboard</span>
                         </Link>
                         <ul class="sub-menu blank">
-                            <li><Link class="link_name" to="#">Dashboard</Link></li>
+                            <li><Link class="link_name" to="dashboard">Dashboard</Link></li>
                         </ul>
                     </li>
                     <li>
